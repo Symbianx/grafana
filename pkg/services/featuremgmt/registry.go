@@ -316,5 +316,9 @@ var (
 			State:           FeatureStateAlpha,
 			RequiresDevMode: true,
 		},
+		{
+			Name:        "showDashboardValidationWarnings",
+			Description: "Show warnings when Dashboards do not validate against the schema",
+		},
 	}
 )

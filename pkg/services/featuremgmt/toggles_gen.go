@@ -234,4 +234,8 @@ const (
 	// FlagQueryLibrary
 	// Reusable query library
 	FlagQueryLibrary = "queryLibrary"
+
+	// FlagShowDashboardValidationWarnings
+	// Show warnings when Dashboards do not validate against the schema
+	FlagShowDashboardValidationWarnings = "showDashboardValidationWarnings"
 )

@@ -73,4 +73,5 @@ export interface FeatureToggles {
   athenaAsyncQueryDataSupport?: boolean;
   increaseInMemDatabaseQueryCache?: boolean;
   queryLibrary?: boolean;
+  showDashboardValidationWarnings?: boolean;
 }
