@@ -374,9 +374,10 @@ type Cfg struct {
 	DateFormats DateFormats
 
 	// User
-	UserInviteMaxLifetime time.Duration
-	HiddenUsers           map[string]struct{}
-	CaseInsensitiveLogin  bool // Login and Email will be considered case insensitive
+	UserInviteMaxLifetime            time.Duration
+	HiddenUsers                      map[string]struct{}
+	CaseInsensitiveLogin             bool // Login and Email will be considered case insensitive
+	ServiceAccountExpirationDayLimit int
 
 	// Annotations
 	AnnotationCleanupJobBatchSize      int64
@@ -1452,6 +1453,8 @@ func readUserSettings(iniFile *ini.File, cfg *Cfg) error {
 			cfg.HiddenUsers[user] = struct{}{}
 		}
 	}
+
+	cfg.ServiceAccountExpirationDayLimit = users.Key("service_account_expiration_day_limit").MustInt(-1)
 
 	return nil
 }
