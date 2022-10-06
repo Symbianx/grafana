@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { GrafanaTheme2 } from '@grafana/data';
+import { config } from '@grafana/runtime';
 import {
   Button,
   ClipboardButton,
@@ -35,6 +36,11 @@ interface Props {
 export const CreateTokenModal = ({ isOpen, token, serviceAccountLogin, onCreateToken, onClose }: Props) => {
   let tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
+
+  let maxExpirationDate = new Date();
+  if (config.serviceAccountExpirationDayLimit !== undefined) {
+    maxExpirationDate.setDate(maxExpirationDate.getDate() + config.serviceAccountExpirationDayLimit);
+  }
 
   const [defaultTokenName, setDefaultTokenName] = useState('');
   const [newTokenName, setNewTokenName] = useState('');
@@ -115,6 +121,7 @@ export const CreateTokenModal = ({ isOpen, token, serviceAccountLogin, onCreateT
                 value={newTokenExpirationDate}
                 placeholder=""
                 minDate={tomorrow}
+                maxDate={maxExpirationDate}
               />
             </Field>
           )}
