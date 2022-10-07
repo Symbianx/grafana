@@ -732,7 +732,7 @@ func TestDashboardAPIEndpoint(t *testing.T) {
 
 		t.Run("When an invalid dashboard json is posted", func(t *testing.T) {
 			cmd := models.ValidateDashboardCommand{
-				Dashboard: "{\"hello\": \"world\"}",
+				Dashboard: []byte("{\"hello\": \"world\"}"),
 			}
 
 			role := org.RoleAdmin
@@ -748,7 +748,7 @@ func TestDashboardAPIEndpoint(t *testing.T) {
 
 		t.Run("When a dashboard with a too-low schema version is posted", func(t *testing.T) {
 			cmd := models.ValidateDashboardCommand{
-				Dashboard: "{\"schemaVersion\": 1}",
+				Dashboard: []byte("{\"schemaVersion\": 1}"),
 			}
 
 			role := org.RoleAdmin
@@ -767,7 +767,7 @@ func TestDashboardAPIEndpoint(t *testing.T) {
 			assert.Empty(t, readErr)
 
 			cmd := models.ValidateDashboardCommand{
-				Dashboard: string(devenvDashboard),
+				Dashboard: devenvDashboard,
 			}
 
 			role := org.RoleAdmin
