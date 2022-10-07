@@ -748,7 +748,6 @@ func TestDashboardAPIEndpoint(t *testing.T) {
 		})
 
 		t.Run("When a dashboard with a too-low schema version is posted", func(t *testing.T) {
-
 			cmd := models.ValidateDashboardCommand{
 				Dashboard: "{\"schemaVersion\": 1}",
 			}
@@ -766,7 +765,6 @@ func TestDashboardAPIEndpoint(t *testing.T) {
 
 		t.Run("When a valid dashboard is posted", func(t *testing.T) {
 			devenvDashboard, readErr := ioutil.ReadFile("../../devenv/dev-dashboards/home.json")
-
 			assert.Empty(t, readErr)
 
 			cmd := models.ValidateDashboardCommand{
