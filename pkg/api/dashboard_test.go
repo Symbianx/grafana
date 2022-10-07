@@ -740,7 +740,7 @@ func TestDashboardAPIEndpoint(t *testing.T) {
 				callPostDashboard(sc)
 
 				result := sc.ToJSON()
-				assert.Equal(t, 200, sc.resp.Code)
+				assert.Equal(t, 422, sc.resp.Code)
 				assert.False(t, result.Get("isValid").MustBool())
 				assert.NotEmpty(t, result.Get("message").MustString())
 			}, &sqlmock)
@@ -756,7 +756,7 @@ func TestDashboardAPIEndpoint(t *testing.T) {
 				callPostDashboard(sc)
 
 				result := sc.ToJSON()
-				assert.Equal(t, 200, sc.resp.Code)
+				assert.Equal(t, 412, sc.resp.Code)
 				assert.False(t, result.Get("isValid").MustBool())
 				assert.Equal(t, "invalid schema version", result.Get("message").MustString())
 			}, &sqlmock)
