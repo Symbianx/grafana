@@ -29,6 +29,7 @@ import {
   updateExpression,
   updateExpressionRefId,
   updateExpressionType,
+  updateExpressionTimeRange,
 } from './reducer';
 
 interface Props {
@@ -117,8 +118,9 @@ export const QueryAndExpressionsStep: FC<Props> = ({ editingExistingRule }) => {
 
   const onChangeQueries = useCallback(
     (updatedQueries: AlertQuery[]) => {
+      console.log('hola');
       dispatch(setDataQueries(updatedQueries));
-
+      dispatch(updateExpressionTimeRange());
       // check if we need to rewire expressions
       updatedQueries.forEach((query, index) => {
         const oldRefId = queries[index].refId;
